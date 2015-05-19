@@ -399,15 +399,15 @@ var MapsLib = {
    
 	  //If MapsLib.currentPinpoint is null, use first result record location
       if (( ($("#stateDD").val() != '') || ($("#cityDD").val() != '') ) && MapsLib.counter > 1){
-          var thisCoordinate = MapsLib.data[row][10].split(",");
+          var thisCoordinate = MapsLib.data[0][9].split(",");
           centerLat = thisCoordinate[0];
           centerLong = thisCoordinate[1];
           newcenter = new google.maps.LatLng(centerLat,centerLong);
           map.setCenter(newcenter);
       }
 
-      if ($("#stateDD").val() != ''){map.setZoom(16);}
-      else if ($("#cityDD").val() != ''){map.setZoom(16);}
+      if ($("#stateDD").val() != ''){map.setZoom(5);}
+      else if ($("#cityDD").val() != ''){map.setZoom(9);}
 
     }
     results.fadeIn();
@@ -417,6 +417,31 @@ var MapsLib = {
   windowControl: function(e, infoWindow, map) {
     e.infoWindowHtml = "<div id='infowindow'>";
     e.infoWindowHtml += "<b>" + e.row['STATION'].value + "</b><br>";
+    e.infoWindowHtml += "<b>Facility Type: </b>" + e.row['Facility_Type'].value + "<br>";
+    if (e.row['Railroad'].value != '' ) {
+      e.infoWindowHtml += "<b>Servicing Railroad: </b>" + e.row['Railroad'].value + "<br>";
+    }
+    e.infoWindowHtml += "<b>Address: </b>" + e.row['Address1'].value + "<br>";
+    if (e.row['Address2'].value != '' ) {
+      e.infoWindowHtml += e.row['Address2'].value + "<br>";
+    }
+    e.infoWindowHtml += "<b>City: </b>" + e.row['City'].value + "<br>";
+    e.infoWindowHtml += "<b>State or Province: </b>" + e.row['State_Province'].value + "<br>";
+    e.infoWindowHtml += "<b>Postal Code: </b>" + e.row['Postal_Code'].value + "<br>";
+    e.infoWindowHtml += "<b>Country: </b>" + e.row['Country'].value + "<br>";
+    e.infoWindowHtml += "<b>Telephone: </b>" + e.row['Telephone'].value + "<br>";
+    if (e.row['Email'].value != '' ) {
+      e.infoWindowHtml += "<b>Email: </b><a href='mailto:" + e.row['Email'].value + "?subject=NAIFD Inquiry'>" + e.row['Email'].value + "</a><br>";
+    }
+    if (e.row['Web_URL'].value != '' ) {
+      e.infoWindowHtml += "<b>Website: </b><a href='http://" + e.row['Web_URL'].value + "' target='_blank'>" + e.row['Web_URL'].value + "</a><br>";
+    }
+    if (e.row['IANA Facility Code'].value != '' ) {
+      e.infoWindowHtml += "<b>IANA Facility Code: </b>" + e.row['IANA Facility Code'].value + "<br>";
+    }
+    if (e.row['SPLC Code'].value != '' && e.row['SPLC Code'].value != 'TBD'  ) {
+      e.infoWindowHtml += "<b>SPLC Code: </b>" + e.row['SPLC Code'].value  + "<br>";
+    }
     e.infoWindowHtml += "</div>";
 
     infoWindow.setOptions({
@@ -484,7 +509,7 @@ var MapsLib = {
 
   },
 
-  // LocationNameDropdown: Query to populate State/Province dropdown
+  // StateDropdown: Query to populate State/Province dropdown
   StateDropdown: function(json){
     MapsLib.handleError(json);
     var statedata = json["rows"];
@@ -494,7 +519,7 @@ var MapsLib = {
       stateDD += "<option value ='Not Good'>Problem retrieving data. Please reload.</option>";
     }
     for (var row in statedata) {
-      stateDD += "<option value='" + statedata[row][0] + "'>" + statedata[row][0] + "</option>";
+      stateDD += "<option value='" + statedata[row][1] + "'>" + statedata[row][1] + "</option>";
     }
     stateDD += "</select>";
     $('#stateDD').html(stateDD);
@@ -509,7 +534,7 @@ var MapsLib = {
       cityDD += "<option value ='Not Good'>Problem retrieving data. Please reload.</option>";
     }
     for (var row in citydata) {
-      cityDD += "<option value='" + citydata[row][0] + "'>" + citydata[row][0] + "</option>";
+      cityDD += "<option value='" + citydata[row][4] + "'>" + citydata[row][4] + "</option>";
     }
     cityDD += "</select>";
     $('#cityDD').html(cityDD);
@@ -524,7 +549,7 @@ var MapsLib = {
       facilitytypeDD += "<option value ='Not Good'>Problem retrieving data. Please reload.</option>";
     }
     for (var row in factypedata) {
-      facilitytypeDD += "<option value='" + factypedata[row][0] + "'>" + factypedata[row][0] + "</option>";
+      facilitytypeDD += "<option value='" + factypedata[row][5] + "'>" + factypedata[row][5] + "</option>";
     }
     facilitytypeDD += "</select>";
     $('#facilitytypeDD').html(facilitytypeDD);

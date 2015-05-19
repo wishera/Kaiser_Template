@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <title>Intermodal Directory</title>
+    <title>Kaiser Directory of Results</title>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <meta content='' name='description' />
-    <meta content='' name='author' />
+    <meta content='' name='Kaiser Directory of Results' />
+    <meta content='' name='Hart Crowser' />
     <!-- Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <!-- <link rel="stylesheet" href="css/bootstrap.css"/> -->
@@ -35,39 +35,39 @@
         </div>      
 
 		
-		<div id='searchbar' class='span5'>
-              <div class="input-append input-prepend span4">
+		<div id='searchbar' class='span4'>
+              <div class="input-append input-prepend span6">
                 <span class='add-on'>Search By:</span>
                 <select class="input-medium" id="SearchType" onChange="MapsLib.SearchTypeChange(value)">
                   <option value='0'>--Search Type--</option>
                   <option value="1">Location Name</option>
                   <option value="2">Sampling Year</option>
                   <option value="3">Sampling Month</option>
-                </select><br>
+                </select>
                 <a  class='btn btn-danger' id='reset' href='#'>
                       <i class='glyphicon glyphicon-repeat'></i>
                       Reset
                 </a>
               </div>
-              <select id="stateDD" class="dropdown span5" style="display: none;">
-                  <option value="">-- Select a State / Province --</option>
-                  <option value="">Loading States...</option>
+              <select id="stateDD" class="dropdown span8" style="display: none;">
+                  <option value="">-- Select Location --</option>
+                  <option value="">Loading...</option>
               </select>
-              <select id="cityDD" class="dropdown span4" style="display: none;">
-                 <option value="">-- Select a City --</option>
-                 <option value="">Loading Cities...</option>
+              <select id="cityDD" class="dropdown span8" style="display: none;">
+                 <option value="">-- Choose Sampling Year --</option>
+                 <option value="">Loading...</option>
               </select>
-              <select id="facilitytypeDD" class="dropdown span4" style="display: none;">
-                  <option value="">-- Select a Facility Type --</option>
-                  <option value="">Loading Facility Types...</option>
+              <select id="facilitytypeDD" class="dropdown span8" style="display: none;">
+                  <option value="">-- Choose Sampling Month --</option>
+                  <option value="">Loading...</option>
                </select>
-              <select id="railroadDD" class="dropdown span4" style="display: none;">
-                  <option value="">-- Select a Railroad --</option>
-                  <option value="">Loading Railroads...</option>
+              <select id="railroadDD" class="dropdown span8" style="display: none;">
+                  <option value="">-- Select a Yeti --</option>
+                  <option value="">Loading ...</option>
               </select>
-              <div id='input-name' class="input-append span6" style="display:none;">
-                <p> Facility Name: 
-                   <input class='form-control input-large' id='search_name' placeholder='Enter a Facility Name' type='text'/>
+              <div id='input-name' class="input-append span8" style="display:none;">
+                <p> Squatch Name: 
+                   <input class='form-control input-large' id='search_name' placeholder='Enter a Squatch Name' type='text'/>
                 <a class='btn btn-primary' id='search' href='#'>
                     <i class='glyphicon glyphicon-search'></i>
                     Search
